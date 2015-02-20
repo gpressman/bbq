@@ -1,0 +1,7 @@
+<% if current_user.present? %>
+<header>
+  <h3><%= current_user.email %></h3>
+  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+</header>
+
+<% end %>

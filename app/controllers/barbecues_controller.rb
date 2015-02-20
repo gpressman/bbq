@@ -1,4 +1,6 @@
 class BarbecuesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @barbecues = Barbecue.order(:date)
   end
@@ -16,5 +18,17 @@ class BarbecuesController < ApplicationController
     else
       redirect_to(barbecues_path)
     end
+  end
+
+  def showbbq
+    bbq = Barbecue.where(id: params[:id]).first
+   render(json: bbq)
+  end
+
+  def join
+    barbecue= Barbecue.where(id: params[:id]).first
+    user= current_user
+     barbecue.users.push(user)
+     render(json: complete = {"status" => "joined"})
   end
 end

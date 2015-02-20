@@ -16,6 +16,7 @@
     var request = $.post('/api/barbecues/' + bbqId + '/join')
 
     request.fail(function () {
+      console.debug(arguments)
       alert('Couldn’t join the barbecue. Try again later.')
       isJoining = false
     })

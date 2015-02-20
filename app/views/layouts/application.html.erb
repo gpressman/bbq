@@ -5,7 +5,19 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application', defer: true %>
   <%= csrf_meta_tags %>
+   <p class="notice"><%= notice %></p>
+   <p class="alert"><%= alert %></p>
 </head>
+<% if current_user.present? %>
+<header>
+  <h3><%= current_user.name %>
+  	  <br>
+  	  <%= current_user.email %>
+  </h3>
+  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+</header>
+
+<% end %>
 <body data-hook="controller-<%= controller_name %> action-<%= action_name %>">
 
   <div class="container">
