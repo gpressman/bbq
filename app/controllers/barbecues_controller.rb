@@ -28,7 +28,9 @@ class BarbecuesController < ApplicationController
   def join
     barbecue= Barbecue.where(id: params[:id]).first
     user= current_user
-     barbecue.users.push(user)
+    unless barbecues.users.include?(user)
+     barbecue.users.push(user)b
      render(json: complete = {"status" => "joined"})
+    end
   end
 end
